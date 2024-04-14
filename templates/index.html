@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Угадайте точку на карте</title>
+</head>
+<body>
+    <h1>Угадайте точку на карте</h1>
+
+    <img src="{{ map_url }}" alt="Google Map">
+
+    <form action="/check" method="post">
+        <label for="lat">Широта:</label>
+        <input type="text" id="lat" name="lat" required>
+
+        <label for="lng">Долгота:</label>
+        <input type="text" id="lng" name="lng" required>
+
+        <button type="submit">Проверить</button>
+    </form>
+</body>
+</html>
