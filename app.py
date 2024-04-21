@@ -34,18 +34,21 @@ def home():
 
 @app.route('/check', methods=['POST'])
 def check():
-    user_lat = float(request.form.get('lat'))
-    user_lon = float(request.form.get('lon'))
+    try:
+        user_lat = float(request.form.get('lat'))
+        user_lon = float(request.form.get('lon'))
 
-    lat, lon = get_random_place()
+        lat, lon = get_random_place()
 
-    diff_lat = lat - user_lat
-    diff_lon = lon - user_lon
-    if test(user_lat, user_lon) == 'error':
-        return f'Пожалуйста введите корректные значения долготы и широты'
-    elif diff_lat < 5 and diff_lon < 5:
-        return f'Отличие между правильными координатами и вашим ответом меньше десяти. Так держать!'
-    return f'Разница в координатах: Широта - {diff_lat}, Долгота - {diff_lon}'
+        diff_lat = lat - user_lat
+        diff_lon = lon - user_lon
+        if test(user_lat, user_lon) == 'error':
+            return f'Пожалуйста введите корректные значения долготы и широты'
+        elif diff_lat < 5 and diff_lon < 5:
+            return f'Отличие между правильными координатами и вашим ответом меньше десяти. Так держать!'
+        return f'Разница в координатах: Широта - {diff_lat}, Долгота - {diff_lon}'
+    except:
+        return f'Пожалуйста, введите значения числового формата'
 
 
 if __name__ == '__main__':
