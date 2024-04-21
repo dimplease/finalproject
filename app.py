@@ -2,8 +2,12 @@ from flask import Flask, render_template, request
 import random
 
 app = Flask(__name__)
-with open('answers.txt', 'r') as file:
-    answers = [line.strip().split() for line in file]
+con = sqlite3.connect('MyBD.sqlite')
+cur = con.cursor()
+records = cur.execute("""SELECT * from map""").fetchall()
+answers = []
+for i in records:
+    answers.append(i)
 
 def get_random_place():
     random_place = random.choice(answers)
